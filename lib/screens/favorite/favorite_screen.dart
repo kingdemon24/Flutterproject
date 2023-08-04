@@ -51,67 +51,86 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthViewModel>(builder: (context, authVM, child) {
-      return Container(
-        child: RefreshIndicator(
-          onRefresh: getInit,
-          child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
-            child:
-            authVM.favoriteProduct == null ?
-            Column(
-              children: [
-                Center(child: Text("Something went wrong")),
-              ],
-            ) :
-            authVM.favoriteProduct!.length == 0
-                ? Column(
-                    children: [
-                      Center(child: Text("Please add to favorite")),
-                    ],
-                  )
-                : Column(children: [
-                  SizedBox(height: 10,),
-                    ...authVM.favoriteProduct!.map(
-                      (e) => InkWell(
-                        onTap: (){
-                          Navigator.of(context).pushNamed("/single-product", arguments: e.id!);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: Card(
-                            child: ListTile(
-                              trailing: IconButton(
-                                iconSize: 25,
-                                onPressed: (){
-                                    removeFavorite(_authViewModel.favorites.firstWhere((element) => element.productId == e.id), e.id!);
-                                },
-                                  icon: Icon(Icons.delete_outlined, color: Colors.red,),
-                              ),
-                              leading: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
-                                  child: Image.network(
-                                    e.imageUrl.toString(),
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (BuildContext context,
-                                        Object exception, StackTrace? stackTrace) {
-                                      return Image.asset(
-                                        'assets/images/logo.png',
+      return Scaffold(
+        appBar: AppBar(
+                    backgroundColor: Colors.red,
+                    title: const Text("Favorite"),
+                    centerTitle: true,
+                  ),
+                  
+             body: SingleChildScrollView(
+          child: Container(
+            child: RefreshIndicator(
+              onRefresh: getInit,
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child:
+                authVM.favoriteProduct == null ?
+                Column(
+                  children: [
+                    Center(child: Text("Something went wrong")),
+                  ],
+                ) :
+                authVM.favoriteProduct!.length == 0
+                    ? Column(
+  children: [
+    Center(
+      child: Text(
+        "Please add to favorite",
+        style: TextStyle(
+          fontSize: 24,                 // Adjust the value to change the text size
+          fontWeight: FontWeight.bold,  // This makes the text bold
+        ),
+      ),
+    ),
+  ],
+)
+
+                    : Column(children: [
+                      SizedBox(height: 10,),
+                        ...authVM.favoriteProduct!.map(
+                          (e) => InkWell(
+                            onTap: (){
+                              Navigator.of(context).pushNamed("/single-product", arguments: e.id!);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 10),
+                              child: Card(
+                                child: ListTile(
+                                  trailing: IconButton(
+                                    iconSize: 25,
+                                    onPressed: (){
+                                        removeFavorite(_authViewModel.favorites.firstWhere((element) => element.productId == e.id), e.id!);
+                                    },
+                                      icon: Icon(Icons.delete_outlined, color: Colors.red,),
+                                  ),
+                                  leading: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Image.network(
+                                        e.imageUrl.toString(),
                                         width: 100,
                                         fit: BoxFit.cover,
-                                      );
-                                    },
-                                  )),
-                              title: Text(e.productName.toString()),
-                              subtitle: Text(e.productPrice.toString()),
+                                        errorBuilder: (BuildContext context,
+                                            Object exception, StackTrace? stackTrace) {
+                                          return Image.asset(
+                                            'assets/images/logo.png',
+                                            width: 100,
+                                            fit: BoxFit.cover,
+                                          );
+                                        },
+                                      )),
+                                  title: Text(e.productName.toString()),
+                                  subtitle: Text(e.productPrice.toString()),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    )
-                  ]),
+                        )
+                      ]),
+              ),
+            ),
           ),
-        ),
+          ),
       );
     });
   }

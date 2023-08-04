@@ -12,8 +12,8 @@ import '../repositories/category_repositories.dart';
 import '../repositories/product_repositories.dart';
 
 class SingleCategoryViewModel with ChangeNotifier {
-  CategoryRepository _categoryRepository = CategoryRepository();
-  ProductRepository _productRepository = ProductRepository();
+  final CategoryRepository _categoryRepository = CategoryRepository();
+  final ProductRepository _productRepository = ProductRepository();
   CategoryModel? _category = CategoryModel();
   CategoryModel? get category => _category;
   List<ProductModel> _products = [];

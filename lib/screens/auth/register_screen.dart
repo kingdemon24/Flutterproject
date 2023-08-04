@@ -71,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.orange,
       body: Form(
         key: _formKey,
         child: Center(

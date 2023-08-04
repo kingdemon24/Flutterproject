@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.n_baz">
    <application
-        android:label="n_baz"
+        android:label="Ecommerce"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -41,21 +41,52 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
   @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Center(
+  //       child: SingleChildScrollView(
+  //         child: Column(
+  //           children: [
+  //             Image.asset("assets/images/splash.gif"),
+  //             SizedBox(height: 100,),
+  //             Text("E-Commerce ", style: TextStyle(
+  //               fontSize: 22
+  //             ),)
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("assets/images/splash.gif"),
-              SizedBox(height: 100,),
-              Text("Bazz", style: TextStyle(
-                fontSize: 22
-              ),)
-            ],
-          ),
+  return Scaffold(
+    body: Center(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset("assets/images/splash.gif"),
+            SizedBox(height: 100,),
+            Text("E-Commerce", style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),),
+            SizedBox(height: 20,), 
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Discover a world of convenience and endless possibilities with our E-commerce platform. Shop for the latest trends, explore unique products, and experience seamless transactions right at your fingertips. Whether you're a shopper or a seller, E-commerce revolutionizes the way you connect with the global marketplace.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 }
